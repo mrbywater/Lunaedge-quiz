@@ -2,14 +2,9 @@
 @import "../../styles/colors";
 
 .quizMainContainer {
-  background-color: transparent-color($black, .1);
-  min-height: 300px;
-  width: 700px;
+  @include mainContainerDefault;
   display: flex;
   flex-direction: column;
-  box-sizing: border-box;
-  padding: 20px;
-  border-radius: 10px;
 
   > span {
 
@@ -27,21 +22,9 @@
       font-size: 18px;
     }
   }
+
   .answersContainer {
     margin-top: 25px;
-
-    .radioItem {
-      box-sizing: border-box;
-      padding: 10px;
-      min-height: 40px;
-      margin-bottom: 5px;
-      background-color: transparent-color($primary, .2);
-      transition: .2s ease;
-
-      &:hover {
-        background-color: transparent-color($primary, .3);
-      }
-    }
   }
 
   .nextStepContainer {

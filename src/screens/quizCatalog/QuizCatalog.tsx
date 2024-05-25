@@ -1,5 +1,5 @@
 import './QuizCatalog.scss';
-import SearchInput from '../../components/searchInput/SearchInput';
+import SearchInput from '../../components/inputsComponents/searchInput/SearchInput';
 import QuizBox from '../../components/quizBox/QuizBox';
 import { ActionIcon } from '@mantine/core';
 import { IconPlus } from '@tabler/icons-react';

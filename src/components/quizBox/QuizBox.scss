@@ -24,14 +24,14 @@
       display: flex;
 
       > svg {
-        color: transparent-color($black, .3) ;
+        color: transparent-color($black, .3);
         width: 18px;
         margin-left: 2px;
         cursor: pointer;
         transition: .2s ease-in;
 
         &:hover {
-          color: $black;
+          color: transparent-color($black, .6);
         }
       }
     }

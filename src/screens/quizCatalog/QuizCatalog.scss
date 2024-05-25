@@ -2,13 +2,7 @@
 @import "../../styles/colors";
 
 .quizCatalogMainContainer {
-  background-color: transparent-color($black, .1);
-  width: 600px;
-  max-width: 95%;
-  min-height: max-content;
-  box-sizing: border-box;
-  padding: 20px;
-  border-radius: 10px;
+  @include mainContainerDefault;
 
   > div  {
     &:first-child {

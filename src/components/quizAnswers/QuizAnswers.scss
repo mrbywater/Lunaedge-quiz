@@ -1,0 +1,12 @@
+@import "../../styles/colors";
+
+.answerItem {
+  padding: 10px !important;
+  margin-bottom: 5px;
+  background-color: transparent-color($primary, .2) !important;
+  transition: .2s ease ;
+
+  &:hover {
+    background-color: transparent-color($primary, .3) !important;
+  }
+}
