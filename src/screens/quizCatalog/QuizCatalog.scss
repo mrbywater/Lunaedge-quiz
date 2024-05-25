@@ -1,0 +1,35 @@
+@import "../../styles/style";
+@import "../../styles/colors";
+
+.quizCatalogMainContainer {
+  background-color: transparent-color($black, .1);
+  width: 600px;
+  max-width: 95%;
+  min-height: max-content;
+  box-sizing: border-box;
+  padding: 20px;
+  border-radius: 10px;
+
+  > div  {
+    &:first-child {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      > div {
+        margin-right: 15px;
+      }
+    }
+
+    &:last-child {
+      margin-top: 35px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+
+      > div  {
+        margin-bottom: 25px;
+      }
+    }
+  }
+}
