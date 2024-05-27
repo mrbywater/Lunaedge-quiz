@@ -6,10 +6,11 @@ import { QuizType } from '../../constants/globalTypes';
 type QuizBoxProps = {
   name: string;
   quizId: string;
+  setQuizArray: (value: QuizType[]) => void;
 };
 
 const QuizBox = (props: QuizBoxProps) => {
-  const { name, quizId } = props;
+  const { name, quizId, setQuizArray } = props;
   const navigate = useNavigate();
 
   const storedArray = JSON.parse(localStorage.getItem('quizArray') || '[]');
@@ -19,6 +20,7 @@ const QuizBox = (props: QuizBoxProps) => {
       (item: QuizType) => item.id !== quizId,
     );
     localStorage.setItem('quizArray', JSON.stringify(updatedArray));
+    setQuizArray(updatedArray);
   };
 
   const editQuiz = () => navigate(`/quiz_create/${quizId}`);

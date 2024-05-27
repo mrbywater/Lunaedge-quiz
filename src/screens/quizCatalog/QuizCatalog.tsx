@@ -67,6 +67,7 @@ const QuizCatalog = () => {
               key={`quiz_box_${quiz.id}`}
               name={quiz.data?.name}
               quizId={quiz.id}
+              setQuizArray={setQuizArray}
             />
           ))
         ) : (
