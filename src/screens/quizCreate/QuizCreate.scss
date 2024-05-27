@@ -4,4 +4,112 @@
 .quizCreateMainContainer {
   @include mainContainerDefault;
 
+  .questionAddContainer {
+    background-color: transparent-color($black, .1);
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    border-radius: 10px;
+    padding: 10px;
+    align-items: center;
+
+    > div {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 15px;
+      width: 100%;
+
+      &:nth-child(1) {
+        flex-wrap: wrap;
+
+        > span {
+          font-size: 20px;
+          margin-right: 10px;
+          width: 100%;
+          text-align: center;
+          margin-bottom: 10px;
+        }
+
+        > div {
+          @media screen and (width < 550px) {
+            width: 100%;
+          }
+        }
+
+        .questionAddInputContainer {
+          width: 100%;
+          margin-bottom: 10px;
+        }
+      }
+
+      &:nth-child(2) {
+
+        > div {
+          width: 100%;
+          margin-right: 10px;
+        }
+      }
+
+      &:nth-child(3) {
+
+        > div {
+          width: 100%;
+        }
+      }
+
+      &:nth-child(4) {
+        justify-content: center;
+        position: relative;
+        margin-top: 10px;
+
+        > button {
+          width: 70%;
+          min-width: max-content;
+        }
+
+        .errorFields {
+          color: #e32626;
+          position: absolute;
+          font-size: 12px;
+          top: -20px;
+        }
+      }
+    }
+  }
+
+  .addQuizButton {
+    position: relative;
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+
+    > button {
+      width: 100%;
+    }
+
+    > div {
+      color: #e32626;
+      position: absolute;
+      font-size: 12px;
+      top: -18px;
+    }
+  }
+
+  .questionRouteContainer {
+    background-color: transparent-color($black, .1);
+    margin-top: 20px;
+    display: flex;
+    min-height: 30px;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+    border-radius: 10px;
+    padding: 10px 10px 0 10px;
+    position: relative;
+
+    > button {
+      margin: 0 4px 10px 4px;
+    }
+  }
 }

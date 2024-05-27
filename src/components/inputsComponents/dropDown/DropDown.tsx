@@ -1,14 +1,23 @@
 import { Select, SelectProps } from '@mantine/core';
 
-const DropDown = (props: SelectProps) => {
-  const { label, placeholder, data, defaultValue } = props;
+interface DropDownProps extends SelectProps {
+  setSelectedOption: (value: string) => void;
+  value: string;
+}
+
+const DropDown = (props: DropDownProps) => {
+  const { label, placeholder, data, setSelectedOption, value } = props;
+
+  const handleSelect = () => (event: any) => setSelectedOption(event);
 
   return (
     <Select
       label={label}
       placeholder={placeholder}
       data={data}
-      defaultValue={defaultValue}
+      allowDeselect={false}
+      value={value}
+      onChange={handleSelect()}
     />
   );
 };

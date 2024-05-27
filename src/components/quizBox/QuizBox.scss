@@ -17,22 +17,25 @@
     background-color: transparent-color($primary, .3);
   }
 
+  > a {
+    width: inherit;
+    text-decoration: none;
+    color: $black;
+  }
+
   > div  {
     color: $black;
+    display: flex;
 
-    &:last-child {
-      display: flex;
+    > svg {
+      color: transparent-color($black, .3);
+      width: 18px;
+      margin-left: 2px;
+      cursor: pointer;
+      transition: .2s ease-in;
 
-      > svg {
-        color: transparent-color($black, .3);
-        width: 18px;
-        margin-left: 2px;
-        cursor: pointer;
-        transition: .2s ease-in;
-
-        &:hover {
-          color: transparent-color($black, .6);
-        }
+      &:hover {
+        color: transparent-color($black, .6);
       }
     }
   }

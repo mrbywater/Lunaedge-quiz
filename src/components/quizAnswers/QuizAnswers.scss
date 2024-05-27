@@ -5,8 +5,35 @@
   margin-bottom: 5px;
   background-color: transparent-color($primary, .2) !important;
   transition: .2s ease ;
+  position: relative !important;
 
   &:hover {
     background-color: transparent-color($primary, .3) !important;
+  }
+
+  > div {
+    > button {
+      position: absolute;
+      right: 3px;
+      top: 3px
+    }
+
+    > div {
+      word-wrap: break-word;
+      overflow: auto;
+    }
+  }
+}
+
+.textAnswerCreateContainer {
+  border: 1px solid #dee2e6;
+  border-radius: 0.25rem;
+  word-wrap: break-word;
+  overflow: auto;
+
+  > button {
+    position: absolute;
+    right: 4px;
+    top:4px
   }
 }

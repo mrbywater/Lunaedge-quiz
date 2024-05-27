@@ -1,52 +1,36 @@
 import './Results.scss';
 import { IconArrowBackUp } from '@tabler/icons-react';
 import { Button } from '@mantine/core';
-
-const test = [
-  {
-    index: 0,
-    score: 1,
-    rightAnswer: '1',
-    answer: '1',
-  },
-  {
-    index: 1,
-    score: 0,
-    rightAnswer: '1',
-    answer: '2',
-  },
-  {
-    index: 2,
-    score: 1,
-    rightAnswer: '1',
-    answer: '1',
-  },
-  {
-    index: 3,
-    score: 1,
-    rightAnswer: '1',
-    answer:
-      '     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis harum ipsum natus obcaecati quae sed, suscipit. Assumenda, consectetur cupiditate debitis deleniti dolor, fugit harum id illum officia, ratione saepe suscipit!',
-  },
-];
+import { QuizResult } from '../../constants/globalTypes';
+import { Link } from 'react-router-dom';
 
 const Results = () => {
-  const totalScore = test.reduce(
-    (total, question) => total + question.score,
+  const resultsArray = JSON.parse(
+    localStorage.getItem('quizResultArray') || '[]',
+  );
+
+  const totalScore = resultsArray.reduce(
+    (total: number, question: QuizResult) => total + question.data.mark,
     0,
   );
   return (
     <div className="resultsMainContainer">
-      {test.map(answer => (
-        <div key={`answer_${answer.index}`} className="answerInfo">
-          <span>{answer.index}</span>
+      {resultsArray.map((answer: QuizResult, index: number) => (
+        <div key={`answer_${index}`} className="answerInfo">
+          <span>{index + 1}</span>
           <span>
-            <b>Your answer:</b> {answer.answer}
+            <b>Your answer:</b>{' '}
+            {Array.isArray(answer.data.yourAnswer)
+              ? answer.data.yourAnswer.join(', ')
+              : answer.data.yourAnswer}
           </span>
           <span>
-            <b>Right answer:</b> {answer.rightAnswer}
+            <b>Right answer:</b>{' '}
+            {Array.isArray(answer.data.rightAnswers)
+              ? answer.data.rightAnswers.join(', ')
+              : answer.data.rightAnswers}
           </span>
-          <span>Score: {answer.score}</span>
+          <span>Score: {answer.data.mark}</span>
         </div>
       ))}
       <div className="totalResultsContainer">
@@ -55,10 +39,12 @@ const Results = () => {
             <b>Total Score:</b> {totalScore}
           </span>
           <span>
-            <b>Time spent:</b> 12:21
+            <b>Time spent:</b> {resultsArray[0].time}
           </span>
         </div>
-        <Button rightSection={<IconArrowBackUp size={18} />}>Exit</Button>
+        <Link to={'/'}>
+          <Button rightSection={<IconArrowBackUp size={18} />}>Exit</Button>
+        </Link>
       </div>
     </div>
   );

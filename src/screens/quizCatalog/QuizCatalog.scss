@@ -4,6 +4,11 @@
 .quizCatalogMainContainer {
   @include mainContainerDefault;
 
+  .emptyQuizArray {
+    color: transparent-color($gray, .6);
+    font-size: 20px;
+  }
+
   > div  {
     &:first-child {
       display: flex;
