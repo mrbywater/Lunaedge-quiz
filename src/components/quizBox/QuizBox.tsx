@@ -15,6 +15,7 @@ const QuizBox = (props: QuizBoxProps) => {
   const navigate = useNavigate();
 
   const storedArray = JSON.parse(localStorage.getItem('quizArray') || '[]');
+  const storedQuiz = storedArray.find((item: QuizType) => item.id === quizId);
 
   const deleteDataById = () => {
     const updatedArray = storedArray.filter(
@@ -34,6 +35,7 @@ const QuizBox = (props: QuizBoxProps) => {
         variant="light"
         radius="xl"
         color="gray"
+        disabled={!storedQuiz.results}
         onClick={goToResultsList}>
         <IconCrown />
       </ActionIcon>
