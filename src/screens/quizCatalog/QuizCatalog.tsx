@@ -21,10 +21,18 @@ const QuizCatalog = () => {
   const filteredQuizArray = quizArray.filter(quiz => {
     return quiz.data?.name.toLowerCase().includes(searchQuery.toLowerCase());
   });
+  const saveQuizArray = (quizzes: QuizType[]) => {
+    const filteredQuizzes = quizzes.filter(quiz => quiz.data); // Убираем пустые объекты
+    localStorage.setItem('quizArray', JSON.stringify(filteredQuizzes));
+  };
 
   useEffect(() => {
     setQuizArray(storedArray);
   }, [storedArray.length]);
+
+  useEffect(() => {
+    saveQuizArray(storedArray);
+  }, []);
 
   const createQuiz = async () => {
     const quizId = uuidv4();
