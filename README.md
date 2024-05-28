@@ -11,4 +11,5 @@ You can:
 - search for quizzes by name;
 - find out the transit time;
 - adjusting the number of points for meals;
+- check quiz results;
 - entering different types of response.
