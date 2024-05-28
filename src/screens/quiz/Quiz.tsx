@@ -3,24 +3,26 @@ import { Button } from '@mantine/core';
 import { IconArrowNarrowRight } from '@tabler/icons-react';
 import SingleAnswer from '../../components/quizAnswers/singleAnswer/SingleAnswer';
 import { useNavigate, useParams } from 'react-router-dom';
-import ErrorPage from '../errorPage/ErrorPage';
-import { Question, QuizType } from '../../constants/globalTypes';
+import {
+  Question,
+  QuizResultData,
+  QuizType,
+} from '../../constants/globalTypes';
 import { useEffect, useState } from 'react';
 import MultiAnswer from '../../components/quizAnswers/multiAnswer/MultiAnswer';
 import TextAnswer from '../../components/quizAnswers/textAnswer/TextAnswer';
 import { fakeApiCall } from '../../utils/fakeApiCall';
 import ReactLoading from 'react-loading';
+import { v4 as uuidv4 } from 'uuid';
 
 const Quiz = () => {
   const { quizId } = useParams();
   const navigate = useNavigate();
 
   const storedArray = JSON.parse(localStorage.getItem('quizArray') || '[]');
-  const availablePath = storedArray.map((item: any) => item.id);
-  const pathIsAvailable = availablePath.includes(quizId);
 
   const quiz = storedArray.find((item: QuizType) => item.id === quizId);
-  const questions = quiz.data.questions;
+  const questions = quiz.data && quiz.data.questions;
 
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [quizAnswers, setQuizAnswers] = useState<(string | string[])[]>([]);
@@ -76,6 +78,9 @@ const Quiz = () => {
       .padStart(2, '0')}`;
   };
 
+  const totalScoreSum = (resultsArray: number[]) =>
+    resultsArray.reduce((total: number, mark: number) => total + mark, 0);
+
   const endTheQuiz = async () => {
     const results = questions.map((item: Question, index: number) => {
       const userAnswer = quizAnswers[index];
@@ -91,17 +96,30 @@ const Quiz = () => {
       }
 
       return {
-        data: {
-          question: item.question,
-          rightAnswers: item.rightAnswers,
-          yourAnswer: userAnswer,
-          maxMark: +item.mark,
-          mark,
-        },
-        time: formatTime(timeElapsed),
+        question: item.question,
+        rightAnswers: item.rightAnswers,
+        yourAnswer: userAnswer,
+        mark: mark,
       };
     });
-    localStorage.setItem(`quizResultArray`, JSON.stringify(results));
+
+    const answersMarks = results.map((item: QuizResultData) => +item.mark);
+    const maxMarks = questions.map((item: Question) => +item.mark);
+    const totalScore =
+      (totalScoreSum(answersMarks) / totalScoreSum(maxMarks)) * 100;
+
+    const newResults = {
+      data: results,
+      time: formatTime(timeElapsed),
+      totalScore: totalScore,
+      id: uuidv4(),
+    };
+
+    quiz.results
+      ? (quiz.results = [...quiz.results, newResults])
+      : (quiz.results = [newResults]);
+
+    localStorage.setItem('quizArray', JSON.stringify(storedArray));
     setIsLoading(true);
     await fakeApiCall(null, 1500);
     setIsLoading(false);
@@ -122,7 +140,7 @@ const Quiz = () => {
     );
   }
 
-  return pathIsAvailable ? (
+  return (
     <div className="quizMainContainer">
       <span>Quiz {quiz.data.name}</span>
       <span>
@@ -145,8 +163,6 @@ const Quiz = () => {
         <div>{formatTime(timeElapsed)}</div>
       </div>
     </div>
-  ) : (
-    <ErrorPage />
   );
 };
 

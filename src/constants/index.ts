@@ -9,3 +9,5 @@ export const INITIAL_QUESTION: Question = {
   answers: [],
   rightAnswers: [],
 };
+
+export const RANK_COLORS = ['#e1ba00', '#8d8d8d', '#bd6812'];

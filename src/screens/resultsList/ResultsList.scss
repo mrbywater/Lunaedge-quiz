@@ -1,0 +1,46 @@
+@import "../../styles/style";
+@import "../../styles/colors";
+
+.ResultsListMainContainer {
+  @include mainContainerDefault;
+
+  > a {
+    > button {
+      width: 100%;
+      margin-top: 15px;
+    }
+  }
+
+  > div {
+    box-sizing: border-box;
+    padding: 10px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+
+    > div {
+      display: flex;
+
+      > span {
+        text-align: center;
+        width: 33.3%;
+      }
+
+      &:first-child {
+        margin-bottom: 15px;
+      }
+
+      &:not(:first-child){
+        padding: 10px 0px;
+        border-top: 1px solid black;
+        cursor: pointer;
+        transition: .3s ease;
+
+        &:hover {
+          background-color: transparent-color($primary, .3);
+        }
+
+      }
+    }
+  }
+}

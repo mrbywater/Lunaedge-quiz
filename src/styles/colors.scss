@@ -2,6 +2,9 @@ $primary: #228be6;
 $gray: #abb5b7;
 $white: #edf2f5;
 $black: #000;
+$gold: #ffd700;
+$silver: #C0C0C0;
+$bronze: #CD7F32;
 
 @function transparent-color($color, $opacity) {
    @return rgba($color, $opacity);

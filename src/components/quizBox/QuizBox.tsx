@@ -1,7 +1,8 @@
 import './QuizBox.scss';
-import { IconX, IconPencil } from '@tabler/icons-react';
+import { IconX, IconPencil, IconCrown } from '@tabler/icons-react';
 import { Link, useNavigate } from 'react-router-dom';
 import { QuizType } from '../../constants/globalTypes';
+import { ActionIcon } from '@mantine/core';
 
 type QuizBoxProps = {
   name: string;
@@ -25,8 +26,17 @@ const QuizBox = (props: QuizBoxProps) => {
 
   const editQuiz = () => navigate(`/quiz_create/${quizId}`);
 
+  const goToResultsList = () => navigate(`/results/${quizId}`);
+
   return (
     <div className="quizBoxMainContainer">
+      <ActionIcon
+        variant="light"
+        radius="xl"
+        color="gray"
+        onClick={goToResultsList}>
+        <IconCrown />
+      </ActionIcon>
       <Link to={`/quiz/${quizId}`}>
         <div>{name}</div>
       </Link>

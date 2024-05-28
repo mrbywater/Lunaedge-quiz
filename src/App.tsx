@@ -7,8 +7,22 @@ import Quiz from './screens/quiz/Quiz';
 import Results from './screens/results/Results';
 import QuizCreate from './screens/quizCreate/QuizCreate';
 import ErrorPage from './screens/errorPage/ErrorPage';
+import { QuizType } from './constants/globalTypes';
+import ResultsList from './screens/resultsList/ResultsList';
 
 function App() {
+  const storedArray = JSON.parse(localStorage.getItem('quizArray') || '[]');
+  const availablePath = storedArray.map((item: QuizType) => item.id);
+  const resultsLoader = ({ params }: any) => {
+    const { quizId } = params;
+
+    if (availablePath.includes(quizId)) {
+      return { quizId };
+    } else {
+      throw new Response('Not Found', { status: 404 });
+    }
+  };
+
   const router = createBrowserRouter([
     {
       path: '/',
@@ -18,14 +32,24 @@ function App() {
     {
       path: '/quiz/:quizId',
       element: <Quiz />,
+      errorElement: <ErrorPage />,
     },
     {
       path: '/quiz_create/:quizId',
       element: <QuizCreate />,
+      errorElement: <ErrorPage />,
     },
     {
-      path: '/results',
+      path: '/results/:quizId',
+      loader: resultsLoader,
+      element: <ResultsList />,
+      errorElement: <ErrorPage />,
+    },
+    {
+      path: '/results/:quizId/:resultId',
+      loader: resultsLoader,
       element: <Results />,
+      errorElement: <ErrorPage />,
     },
   ]);
 

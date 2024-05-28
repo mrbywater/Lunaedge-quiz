@@ -7,7 +7,6 @@ import SingleAnswer from '../../components/quizAnswers/singleAnswer/SingleAnswer
 import { useEffect, useRef, useState } from 'react';
 import MultiAnswer from '../../components/quizAnswers/multiAnswer/MultiAnswer';
 import { useNavigate, useParams } from 'react-router-dom';
-import ErrorPage from '../errorPage/ErrorPage';
 import TextAnswerCreate from '../../components/quizAnswers/textAnswer/TextAnswerCreate';
 import { Question, QuizType } from '../../constants/globalTypes';
 import { fakeApiCall } from '../../utils/fakeApiCall';
@@ -27,8 +26,6 @@ const QuizCreate = () => {
   const answerTitleRef = useRef<HTMLInputElement>(null);
 
   const storedArray = JSON.parse(localStorage.getItem('quizArray') || '[]');
-  const availablePath = storedArray.map((item: QuizType) => item.id);
-  const pathIsAvailable = availablePath.includes(quizId);
   const storedQuiz = storedArray.find((item: QuizType) => item.id === quizId);
 
   const [selectedOption, setSelectedOption] = useState<string>('Single');
@@ -197,7 +194,7 @@ const QuizCreate = () => {
     );
   }
 
-  return pathIsAvailable ? (
+  return (
     <div className="quizCreateMainContainer">
       <div>
         <Input.Wrapper label="Title">
@@ -287,8 +284,6 @@ const QuizCreate = () => {
         </Button>
       </div>
     </div>
-  ) : (
-    <ErrorPage />
   );
 };
 

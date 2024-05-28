@@ -7,7 +7,6 @@ export type Question = {
 };
 
 export type QuizResultData = {
-  maxMark: number;
   mark: number;
   question: string;
   rightAnswers: string | string[];
@@ -16,7 +15,9 @@ export type QuizResultData = {
 
 export type QuizResult = {
   data: QuizResultData;
+  totalScore: string;
   time: string;
+  id: string;
 };
 
 export interface InitialQuiz {
@@ -27,5 +28,6 @@ export interface QuizType extends InitialQuiz {
   data: {
     name: string;
     questions: Question;
+    results: QuizResult[];
   };
 }
