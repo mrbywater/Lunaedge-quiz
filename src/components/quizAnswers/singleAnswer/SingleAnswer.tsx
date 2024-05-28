@@ -3,18 +3,11 @@ import '../QuizAnswers.scss';
 import { IconX } from '@tabler/icons-react';
 import { SingleProps } from '../quizAnswersType';
 const SingleAnswer = (props: SingleProps) => {
-  const {
-    answersArr,
-    handleYourAnswer,
-    deleteCross,
-    deleteAnswer,
-    setRightAnswer,
-    rightAnswer,
-  } = props;
+  const { answersArr, deleteCross, deleteAnswer, setRightAnswer, rightAnswer } =
+    props;
 
   const handleRightAnswer = (selectedAnswers: string) => {
     setRightAnswer && setRightAnswer(selectedAnswers);
-    handleYourAnswer && handleYourAnswer(selectedAnswers);
   };
   return (
     <Radio.Group value={rightAnswer} onChange={handleRightAnswer}>

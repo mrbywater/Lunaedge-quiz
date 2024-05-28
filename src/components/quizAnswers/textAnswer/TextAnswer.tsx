@@ -2,14 +2,14 @@ import { TextInput } from '@mantine/core';
 import { ChangeEvent } from 'react';
 
 type TextAnswerProps = {
-  handleYourAnswer?: (answer: string) => void;
+  setRightAnswer?: (answer: string) => void;
 };
 
 const TextAnswer = (props: TextAnswerProps) => {
-  const { handleYourAnswer } = props;
+  const { setRightAnswer } = props;
 
   const setAnswerHandler = () => (event: ChangeEvent<HTMLInputElement>) => {
-    handleYourAnswer && handleYourAnswer(event.target.value);
+    setRightAnswer && setRightAnswer(event.target.value);
   };
 
   return (

@@ -45,16 +45,16 @@ const Quiz = () => {
     Single: (
       <SingleAnswer
         answersArr={currentQuestion.answers}
-        handleYourAnswer={handleYourAnswer}
+        setRightAnswer={handleYourAnswer}
       />
     ),
     Multiply: (
       <MultiAnswer
         answersArr={currentQuestion.answers}
-        handleYourAnswer={handleYourAnswer}
+        setRightAnswer={handleYourAnswer}
       />
     ),
-    Text: <TextAnswer handleYourAnswer={handleYourAnswer} />,
+    Text: <TextAnswer setRightAnswer={handleYourAnswer} />,
   };
   const evaluateAnswer = (
     correctAnswer: string[],

@@ -3,17 +3,10 @@ import '../QuizAnswers.scss';
 import { IconX } from '@tabler/icons-react';
 import { MultiProps } from '../quizAnswersType';
 const MultiAnswer = (props: MultiProps) => {
-  const {
-    answersArr,
-    handleYourAnswer,
-    deleteCross,
-    deleteAnswer,
-    setRightAnswer,
-    rightAnswer,
-  } = props;
+  const { answersArr, deleteCross, deleteAnswer, setRightAnswer, rightAnswer } =
+    props;
   const handleRightAnswer = (selectedAnswers: string[]) => {
     setRightAnswer && setRightAnswer(selectedAnswers);
-    handleYourAnswer && handleYourAnswer(selectedAnswers);
   };
 
   return (
