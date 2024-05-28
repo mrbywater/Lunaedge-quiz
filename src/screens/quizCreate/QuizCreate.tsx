@@ -2,7 +2,7 @@ import './QuizCreate.scss';
 import { ActionIcon, Button, Input, NumberInput } from '@mantine/core';
 import DropDown from '../../components/inputsComponents/dropDown/DropDown';
 import { ANSWER_OPTIONS, INITIAL_QUESTION } from '../../constants';
-import { IconPlus } from '@tabler/icons-react';
+import { IconPlus, IconX } from '@tabler/icons-react';
 import SingleAnswer from '../../components/quizAnswers/singleAnswer/SingleAnswer';
 import { useEffect, useRef, useState } from 'react';
 import MultiAnswer from '../../components/quizAnswers/multiAnswer/MultiAnswer';
@@ -147,6 +147,13 @@ const QuizCreate = () => {
     index === questions.length - 1 ? setIsEditing(false) : setIsEditing(true);
   };
 
+  const deleteQuestion = (indexToRemove: number) => () => {
+    const newQuestionsArray = questions.filter(
+      (_, index) => index !== indexToRemove,
+    );
+    setQuestions([...newQuestionsArray]);
+  };
+
   const addQuiz = async () => {
     if (quizTitleRef.current?.value && questions.length > 1 && quizId) {
       updateDataById(quizId, {
@@ -203,6 +210,18 @@ const QuizCreate = () => {
       </div>
       <div className="questionAddContainer">
         <div>
+          {questions.length > 2 &&
+            currentQuestionIndex !== questions.length - 1 && (
+              <ActionIcon
+                size="16px"
+                variant="light"
+                radius="xl"
+                color="#000"
+                className="deleteQuestionButton"
+                onClick={deleteQuestion(currentQuestionIndex)}>
+                <IconX stroke={1.5} />
+              </ActionIcon>
+            )}
           <span>Question №{currentQuestionIndex + 1}</span>
           <div className="questionAddInputContainer">
             <Input.Wrapper label="Question">
