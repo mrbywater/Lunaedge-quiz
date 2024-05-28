@@ -107,12 +107,13 @@ const Quiz = () => {
     const maxMarks = questions.map((item: Question) => +item.mark);
     const totalScore =
       (totalScoreSum(answersMarks) / totalScoreSum(maxMarks)) * 100;
+    const resultUniqueId = uuidv4();
 
     const newResults = {
       data: results,
       time: formatTime(timeElapsed),
       totalScore: totalScore,
-      id: uuidv4(),
+      id: resultUniqueId,
     };
 
     quiz.results
@@ -123,7 +124,7 @@ const Quiz = () => {
     setIsLoading(true);
     await fakeApiCall(null, 1500);
     setIsLoading(false);
-    navigate('/results');
+    navigate(`/results/${quizId}/${resultUniqueId}`);
   };
 
   useEffect(() => {
