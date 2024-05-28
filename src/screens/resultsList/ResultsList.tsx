@@ -36,7 +36,7 @@ const ResultsList = () => {
         {results.map((item: any, index: number) => (
           <div key={`rank_${index}`} onClick={goToResults(item.id)}>
             <span style={{ color: RANK_COLORS[index] }}>{index + 1}</span>
-            <span>{item.totalScore}%</span>
+            <span>{(item.totalScore + '').slice(0, 5)}%</span>
             <span>{item.time}</span>
           </div>
         ))}
