@@ -7,6 +7,7 @@ export type Question = {
 };
 
 export type QuizResultData = {
+  maxMark: number;
   mark: number;
   question: string;
   rightAnswers: string | string[];

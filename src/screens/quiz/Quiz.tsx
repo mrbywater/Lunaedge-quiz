@@ -95,6 +95,7 @@ const Quiz = () => {
           question: item.question,
           rightAnswers: item.rightAnswers,
           yourAnswer: userAnswer,
+          maxMark: +item.mark,
           mark,
         },
         time: formatTime(timeElapsed),

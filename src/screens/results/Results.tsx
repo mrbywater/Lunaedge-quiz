@@ -9,15 +9,25 @@ const Results = () => {
     localStorage.getItem('quizResultArray') || '[]',
   );
 
-  const totalScore = resultsArray.reduce(
+  const yourSrcore = resultsArray.reduce(
     (total: number, question: QuizResult) => total + question.data.mark,
     0,
   );
+
+  const maxScore = resultsArray.reduce(
+    (total: number, question: QuizResult) => total + question.data.maxMark,
+    0,
+  );
+
+  const totalScore = (yourSrcore / maxScore) * 100;
   return (
     <div className="resultsMainContainer">
       {resultsArray.map((answer: QuizResult, index: number) => (
         <div key={`answer_${index}`} className="answerInfo">
           <span>{index + 1}</span>
+          <span>
+            <b>Question</b>: {answer.data.question}
+          </span>
           <span>
             <b>Your answer:</b>{' '}
             {Array.isArray(answer.data.yourAnswer)
@@ -36,7 +46,7 @@ const Results = () => {
       <div className="totalResultsContainer">
         <div>
           <span>
-            <b>Total Score:</b> {totalScore}
+            <b>Total Score:</b> {(totalScore + '').slice(0, 5)}%
           </span>
           <span>
             <b>Time spent:</b> {resultsArray[0].time}
