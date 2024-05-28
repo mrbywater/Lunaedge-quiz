@@ -34,7 +34,7 @@ const QuizBox = (props: QuizBoxProps) => {
       <ActionIcon
         variant="light"
         radius="xl"
-        color="gray"
+        color="yellow"
         disabled={!storedQuiz.results}
         onClick={goToResultsList}>
         <IconCrown />
